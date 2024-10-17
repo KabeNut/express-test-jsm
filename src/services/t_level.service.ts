@@ -59,7 +59,7 @@ class TLevelService extends AbsService<TLevel> {
 
     async update(id: string, data: Partial<TLevel>): Promise<TLevel | null> {
         try {
-            const [result] = await pool.query<ResultSetHeader>("UPDATE t_level SET ? WHERE level_id = ?", [data.level_name, id]);
+            const [result] = await pool.query<ResultSetHeader>("UPDATE t_level SET ? WHERE level_id = ?", [data, id]);
 
             if(result.affectedRows) {
                 return await this.getById(id);
